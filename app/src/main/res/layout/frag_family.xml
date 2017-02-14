@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_feed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackImgr"
+    tools:context="x_wolves.ais.Fragments.FragFamily">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_margin="12dip"
+        android:id="@+id/rvFamily"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
