@@ -43,13 +43,17 @@ public class FragFeed extends Fragment {
     AdapterLogs adapterLogs;
     List<DataLogs> dataList;
 
-    public FragFeed() {}
+    public FragFeed() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataList = new ArrayList<>();
-        loadFromServer(1); // 1 is userid
+        if ( isOnline() ) {
+            loadFromServer(1); // 1 is userid
+        } else {
+            Toast.makeText(getActivity(), "Error, not connected to the internet", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loadFromServer(final int id) {
@@ -58,15 +62,13 @@ public class FragFeed extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-
             }
 
             @Override
             protected Void doInBackground(Integer... integers) {
                 OkHttpClient client = new OkHttpClient();
-                Request request = new Request.Builder().url("http://10.0.2.2/Geo/data_logs.php?user_id="+id).build();
-//                Request request = new Request.Builder().url("http://mmssatc.pk/main/test/data_logs.php?user_id=1").build();
-
+//                Request request = new Request.Builder().url("http://10.0.2.2/Geo/data_logs.php?user_id="+id).build();
+                Request request = new Request.Builder().url("http://mmssatc.pk/main/test/data_logs.php?user_id=1").build();
                 try {
                     Response response = client.newCall(request).execute();
                     JSONArray jsonArray = new JSONArray(response.body().string());
@@ -77,7 +79,7 @@ public class FragFeed extends Fragment {
                         dataList.add(dataLogs);
                     }
                 }
-                catch (IOException | JSONException e) { e.printStackTrace();}
+                catch (IOException | JSONException e) {Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show(); }
 
                 return null;
             }
@@ -95,7 +97,7 @@ public class FragFeed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_feed, container, false);
-        ((MainActivity) getActivity()).toolbar.setTitle("Maps");
+        ((MainActivity) getActivity()).toolbar.setTitle("Logs");
         recyclerView = (RecyclerView) view.findViewById(R.id.rvLogs);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterLogs = new AdapterLogs(getActivity(), dataList);
@@ -112,11 +114,7 @@ public class FragFeed extends Fragment {
 
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        } else {
-            return false;
-        }
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 

@@ -15,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -42,9 +43,15 @@ public class Login extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
-        PulsatorLayout pulsator = (PulsatorLayout) findViewById(R.id.pulsator3);
-        pulsator.start();
+
+        try {
+            getSupportActionBar().hide();
+        } catch (NullPointerException ex) {
+            Toast.makeText(this, "No toolbar exists", Toast.LENGTH_SHORT).show();
+        }
+
+        PulsatorLayout pulsatorLayout = (PulsatorLayout) findViewById(R.id.pulsator3);
+        pulsatorLayout.start();
         ButterKnife.inject(this);
 
     }

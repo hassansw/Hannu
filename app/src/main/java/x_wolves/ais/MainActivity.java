@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Logs");
-        getWindow().setStatusBarColor(getResources().getColor(R.color.mainColor2));
+        getWindow().setStatusBarColor(getResources().getColor(R.color.mainColor));
         setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
             }
 
             @Override
@@ -86,9 +85,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
         File extFileDir = getExternalFilesDir(null);
@@ -104,7 +101,7 @@ public class MainActivity extends AppCompatActivity
 //            mContact = jsonArray.getJSONObject(0).getString("contact");
 //
 //        } catch (JSONException e) {
-//            Toast.makeText(this, "File does not exists...", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Fxile does not exists...", Toast.LENGTH_SHORT).show();
 //        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -118,7 +115,6 @@ public class MainActivity extends AppCompatActivity
         });
         this.initialize();
     }
-
 
     private void initialize(){
 

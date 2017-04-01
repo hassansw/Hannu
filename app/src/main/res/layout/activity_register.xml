@@ -157,10 +157,10 @@
                             <EditText
                                 android:textSize="13sp"
                                 android:hint="Address"
-                                android:id="@+id/et_repeatpassword2"
+                                android:id="@+id/et_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textPassword"
+                                android:inputType="text"
                                 />
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -179,10 +179,10 @@
                             <EditText
                                 android:textSize="13sp"
                                 android:hint="Contact"
-                                android:id="@+id/et_repeatpassword3"
+                                android:id="@+id/et_contact"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textPassword"
+                                android:inputType="number"
                                 />
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
@@ -201,17 +201,61 @@
                             <EditText
                                 android:textSize="13sp"
                                 android:hint="Email"
-                                android:id="@+id/et_repeatpassword4"
+                                android:id="@+id/et_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="textPassword"
+                                android:inputType="textEmailAddress"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout><LinearLayout
+                        android:paddingStart="50dp"
+                        android:paddingEnd="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="30dp">
+                        <android.support.design.widget.TextInputLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textSize="13sp"
+                                android:hint="Number of Family Members"
+                                android:id="@+id/et_numFamily"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:paddingStart="50dp"
+                        android:paddingEnd="30dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="30dp">
+                        <android.support.design.widget.TextInputLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:textSize="13sp"
+                                android:hint="Subscription Id"
+                                android:id="@+id/et_subsId"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
                                 />
                         </android.support.design.widget.TextInputLayout>
                     </LinearLayout>
                     <Button
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dip"
                         android:layout_gravity="center_horizontal"
-                        android:id="@+id/bt_go"
+                        android:id="@+id/bt_register"
                         android:background="@color/colorPrimary"
                         android:stateListAnimator="@drawable/state_list_animator_z"
                         android:layout_width="150dp"

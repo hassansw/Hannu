@@ -22,8 +22,8 @@ import x_wolves.ais.R;
 
 
 public class AdapterLogs extends RecyclerView.Adapter<AdapterLogs.ViewHolder> {
-    Context context;
-    List<DataLogs> logsList;
+    private Context context;
+    private List<DataLogs> logsList;
 
     public AdapterLogs(Context context, List<DataLogs> logsList) {
         this.context = context;
@@ -35,9 +35,7 @@ public class AdapterLogs extends RecyclerView.Adapter<AdapterLogs.ViewHolder> {
         View viewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_logs, parent, false);
         return new ViewHolder(viewHolder);
     }
-
-
-
+    
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 

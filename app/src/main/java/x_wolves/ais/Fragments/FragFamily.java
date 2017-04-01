@@ -1,5 +1,8 @@
 package x_wolves.ais.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -42,7 +45,10 @@ public class FragFamily extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataList = new ArrayList<>();
-        loadFromServer(1); // 1 is userid
+
+        if( isOnline() ) {
+            loadFromServer(1); // 1 is userid
+        }
     }
 
     private void loadFromServer(final int id) {
@@ -50,8 +56,8 @@ public class FragFamily extends Fragment {
             @Override
             protected Void doInBackground(Integer... integers) {
                 OkHttpClient client = new OkHttpClient();
-//                Request request = new Request.Builder().url("http://mmssatc.pk/main/test/data_fam.php?user_id="+id).build();
-                Request request = new Request.Builder().url("http://10.0.2.2/Geo/data_fam.php?user_id="+id).build();
+                Request request = new Request.Builder().url("http://mmssatc.pk/main/test/data_fam.php?user_id="+id).build();
+//                Request request = new Request.Builder().url("http://10.0.2.2/Geo/data_fam.php?user_id="+id).build();
 
                 try {
                     Response response = client.newCall(request).execute();
@@ -90,5 +96,12 @@ public class FragFamily extends Fragment {
 
         return view;
 
+    }
+
+    protected boolean isOnline() {
+
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
